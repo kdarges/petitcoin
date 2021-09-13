@@ -43,6 +43,12 @@ class Coordonnees
      */
     private $fk_user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="fk_coord")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $address;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +110,18 @@ class Coordonnees
     public function setFkUser(User $fk_user): self
     {
         $this->fk_user = $fk_user;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }
