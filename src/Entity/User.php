@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -44,6 +46,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToOne(targetEntity=Coordonnees::class, mappedBy="fk_user", cascade={"persist", "remove"})
      */
     private $coordonnees;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="fk_user")
+     */
+    private $annonces;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="fk_user")
+     */
+    private $messages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Notes::class, inversedBy="fk_user")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $notes;
+
+    public function __construct()
+    {
+        $this->annonces = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -159,6 +183,78 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->coordonnees = $coordonnees;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setFkUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getFkUser() === $this) {
+                $annonce->setFkUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setFkUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getFkUser() === $this) {
+                $message->setFkUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNotes(): ?Notes
+    {
+        return $this->notes;
+    }
+
+    public function setNotes(?Notes $notes): self
+    {
+        $this->notes = $notes;
 
         return $this;
     }
