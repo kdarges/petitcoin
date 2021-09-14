@@ -49,7 +49,7 @@ class Annonce
     private $fk_user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ville::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $fk_ville;
