@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\Coordonnees;
 
 class RegistrationController extends AbstractController
 {
@@ -18,6 +19,8 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $user = new User();
+        $coordonnees = new Coordonnees();
+        $user->setCoordonnees($coordonnees);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -31,11 +34,13 @@ class RegistrationController extends AbstractController
             );
 
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user->getCoordonnees()); 
+            $entityManager->persist($user->getCoordonnees()->getAddress()); 
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('test');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('registration/register.html.twig', [
