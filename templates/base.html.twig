@@ -10,13 +10,16 @@
     </head>
     <body>
 
-        
-
+        {% if app.user %}
+        {% include "base/header_co.html.twig" %}
+        {% elseif not app.user %}
         {% include "base/header.html.twig" %}
+        {% endif %}
+
+        
         {% include "base/side.html.twig" %}
         
-        
         {% block body %}{% endblock %}
-        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+        {# {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %} #}
     </body>
 </html>
