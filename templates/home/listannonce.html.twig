@@ -1,0 +1,49 @@
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+  <div class="album py-5 bg-light">
+  
+    <div class="container ">
+
+      <div class="row">
+      {% for annonce in annonces %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+          <img class="card" src={{annonce.image}}/>
+            <div class="card-body">
+              <p class="card-text">{{annonce.titre}}</p>
+              <p class="card-text">{{annonce.description}}</p>
+              <p class="card-text"> <a href="#">{{annonce.fk_user}}</a></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  {# <a href="/annonce/{{annonce.id}}"><button>Text</button></a> #}
+                  <a class="btn btn-warning" href="/annonce/{{annonce.id}}">Détail</a>
+                </div>
+                <small class="text-muted">{{annonce.prix}}€</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+</main>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-40ix5a3dj6/qaC7tfz0Yr+p9fqWLzzAXiwxVLt9dw7UjQzGYw6rWRhFAnRapuQyK" crossorigin="anonymous"></script></body>
+

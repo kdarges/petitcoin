@@ -51,7 +51,21 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('home'));
+
+        // // recuperer role User
+        $user = $token->getUser();
+        $roles = $user->getRoles();  //dans Entity
+ 
+        if(in_array('ROLE_ADMIN', $roles)){
+            return new RedirectResponse('/admin');
+        } 
+        
+        else {
+            return new RedirectResponse('/home');
+        }
+
+        
+        // return new RedirectResponse($this->urlGenerator->generate('home'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
@@ -60,3 +74,5 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 }
+
+

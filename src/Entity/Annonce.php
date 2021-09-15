@@ -43,7 +43,7 @@ class Annonce
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $fk_user;
@@ -125,7 +125,7 @@ class Annonce
         return $this;
     }
 
-    public function getFkUser(): ?user
+    public function getfk_user(): ?user
     {
         return $this->fk_user;
     }
@@ -159,5 +159,10 @@ class Annonce
         $this->categorie = $categorie;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->titre;
     }
 }

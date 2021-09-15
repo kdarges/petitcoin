@@ -30,7 +30,7 @@ class Notes
     private $nb_notes;
 
     /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="notes")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="notes")
      */
     private $fk_user;
 

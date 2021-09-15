@@ -30,7 +30,7 @@ class Categorie
     private $icone;
 
     /**
-     * @ORM\OneToMany(targetEntity=annonce::class, mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="categorie")
      */
     private $fk_annonce;
 
