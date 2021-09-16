@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
+use App\Entity\User;
 
 class AnnonceController extends AbstractController
 {
@@ -29,5 +30,20 @@ class AnnonceController extends AbstractController
         // or render a template
         // in the template, print things with {{ product.name }}
         return $this->render('annonce/index.html.twig', ['product' => $product]);
+    }
+
+    /**
+     * @Route("/mesannonces", name="mesannonces")
+     */
+
+    public function mesannonces(): Response {
+        $user = $this->getUser();
+        $annonces = $user->getAnnonces();
+
+        return $this->render('annonce/mesannonces.html.twig', [
+            'annonces' => $annonces,
+        ]);
+
+
     }
 }
