@@ -3,11 +3,11 @@
     <div class="d-flex align-items-center justify-content-center">
 
       <ul class="nav col-lg-auto mb-2 justify-content-center mb-md-0 me-lg-auto">
-        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+        {# <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
         <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
         <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
         <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">About</a></li>      
+        <li><a href="#" class="nav-link px-2 text-white">About</a></li>       #}
       </ul>
 
       <div class="col-lg-6 mb-3 mb-lg-0 fw-bold" style="font-size: 24px">LE PETIT COIN</div>
@@ -19,8 +19,7 @@
         </a>
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
           <li><a class="dropdown-item" href="/createannonce/new">Créer une annonce</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="/profil">Mon Profil</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href={{ logout_path(key = null) }}>Me deconnecter</a></li>
         </ul>
