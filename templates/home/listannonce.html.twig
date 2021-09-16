@@ -22,14 +22,14 @@
 
       <div class="row">
       {% for annonce in annonces %}
-      {% if annonce.statut == 1 %}
+      {# {% if annonce.statut == 1 %} #}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-          <img class="card" src={{annonce.image}}/>
+          <img class="card" src="{{ asset('uploads/images/' ~ annonce.image) }}"/>
             <div class="card-body">
-              <p class="card-text">{{annonce.titre}}</p>
-              <p class="card-text">{{annonce.description}}</p>
-              <p class="card-text"> <a href="#">{{annonce.fk_user}}</a></p>
+              <p class="card-text fw-bold">{{annonce.titre}}</p>
+              <p class="card-text mt-4">{{annonce.description}}</p>
+              <p class="card-text text-muted mt-5">Vendeur : <a href="#">{{annonce.fk_user}}</a></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   {# <a href="/annonce/{{annonce.id}}"><button>Text</button></a> #}
@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        {% endif %}
+        {# {% endif %} #}
         {% endfor %}
 
 </main>
