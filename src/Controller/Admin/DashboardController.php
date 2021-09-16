@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use App\Entity\User;
 use App\Entity\Annonce;
+use App\Entity\Messages;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -32,5 +33,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Mes utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Mes annonces', 'fas fa-inbox', Annonce::class);
+        yield MenuItem::linkToCrud('Mes messages', 'far fa-envelope', Messages::class);
     }
 }
