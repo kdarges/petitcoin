@@ -19,6 +19,16 @@ class HomeController extends AbstractController
             'annonces' => $annonceRepository->findByExampleField(),
         ]);
     }
+
+      /**
+     * @Route("/", name="/")
+     */
+    public function home(AnnonceRepository $annonceRepository): Response
+    {
+        return $this->render('home/index.html.twig', [
+            'annonces' => $annonceRepository->findByExampleField(),
+        ]);
+    }
 }
 
 
