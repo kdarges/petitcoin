@@ -2,27 +2,25 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Coordonnees;
+use App\Form\ProfilType;
+use App\Entity\User;
 
-class RegistrationController extends AbstractController
+class ProfilController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/profil/edit", name="profil_edit")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
-    {
-        $user = new User();
-        $coordonnees = new Coordonnees();
-        $user->setCoordonnees($coordonnees);
-        $form = $this->createForm(RegistrationFormType::class, $user);
+    public function edit(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response {
+        $user = $this->getUser();
+        $form = $this->createForm(ProfilType::class, $user);
         $form->handleRequest($request);
+        dump($user);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -38,13 +36,25 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user->getCoordonnees()->getAddress()); 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
-
+            
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
+        return $this->render('profil/edit.html.twig', [
+            'profil' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/profil", name="profil")
+     */
+    public function profil() : Response {
+        $user = $this->getUser();
+
+        return $this->render('profil/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    
 }

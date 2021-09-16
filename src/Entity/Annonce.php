@@ -60,6 +60,11 @@ class Annonce
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $statut;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -164,5 +169,17 @@ class Annonce
     public function __toString()
     {
         return $this->titre;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
     }
 }
