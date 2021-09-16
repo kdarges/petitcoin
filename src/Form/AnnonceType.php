@@ -16,7 +16,7 @@ class AnnonceType extends AbstractType
         $builder
             ->add('titre')
             ->add('description')
-            ->add('date')
+            // ->add('date')
             ->add('prix')
             ->add('image', FileType::class, [
                 'label' => 'Image (png, jpg)',
