@@ -56,5 +56,18 @@ class ProfilController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/profil/{id}", name="profil_autre")
+     */
+    public function profil_autre(User $user) : Response {
+       
+
+        return $this->render('profil/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
     
+
+
+
 }

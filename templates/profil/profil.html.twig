@@ -21,6 +21,9 @@
     <td>{{ user.coordonnees.address.villes[0].nom }}</td>
     <td>{{ user.coordonnees.address.villes[0].cp }}</td></tr>
     </table>
+    {# app.user correspond a la session de l'user connecte #}
+    {% if user == app.user  %}
     <a href='/profil/edit'>Modifier mon profil</a>
+    {% endif %}
 </div>
 {% endblock %}

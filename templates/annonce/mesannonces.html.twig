@@ -15,9 +15,11 @@
     <tr><td>{{ annonce.date|date }}</td></tr>
     <tr><td>{{ annonce.prix }}</td></tr>
     <tr><td>{{ annonce.image }}</td></tr>
-    <tr><td>{{ annonce.statut }}</td>
+    <tr><td>{{ annonce.statut }}</td></tr>
+    <tr><td><a href='/mesannonces/{{annonce.id}}/delete' onclick="return confirm('Are you sure you want to delete this item?');">Supprimer</a> <a href='/mesannonces/{{annonce.id}}/edit'>Edit</a></td></tr>
     </tr>
     {% endfor %}
     </table>
+
 </div>
 {% endblock %}

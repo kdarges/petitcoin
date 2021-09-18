@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
  */

@@ -28,7 +28,7 @@
             <div class="card-body">
               <p class="card-text">{{annonce.titre}}</p>
               <p class="card-text">{{annonce.description}}</p>
-              <p class="card-text"> <a href="#">{{annonce.fk_user}}</a></p>
+              <p class="card-text"> <a href="/profil/{{annonce.fk_user.id}}">{{annonce.fk_user}}</a></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   {# <a href="/annonce/{{annonce.id}}"><button>Text</button></a> #}
