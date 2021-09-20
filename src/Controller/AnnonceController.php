@@ -29,7 +29,7 @@ class AnnonceController extends AbstractController
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('annonce/index.html.twig', ['product' => $product]);
+        return $this->render('annonce/index.html.twig', ['product' => $product,]);
     }
 
     /**
