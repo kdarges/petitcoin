@@ -22,9 +22,10 @@
 
       <div class="row">
       {% for annonce in annonces %}
+      {# {% if annonce.statut == 1 %} #}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-          <img class="card" src={{annonce.image}}/>
+          <img class="card" src="{{ asset('uploads/images/' ~ annonce.image) | imagine_filter('thumb') }}"/>
             <div class="card-body">
               <p class="card-text">{{annonce.titre}}</p>
               <p class="card-text">{{annonce.description}}</p>
@@ -39,6 +40,7 @@
             </div>
           </div>
         </div>
+        {# {% endif %} #}
         {% endfor %}
 
 </main>

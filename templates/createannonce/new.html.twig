@@ -3,9 +3,14 @@
 {% block title %}New Annonce{% endblock %}
 
 {% block body %}
-    <h1>Create new Annonce</h1>
+
+<div class="container">
+
+
+    <h1>Créez votre annonce</h1>
 
     {{ include('createannonce/_form.html.twig') }}
 
-    <a href="{{ path('createannonce_index') }}">back to list</a>
+
+    </div>
 {% endblock %}

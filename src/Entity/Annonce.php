@@ -29,6 +29,7 @@ class Annonce
     private $description;
 
     /**
+     * 
      * @ORM\Column(type="date")
      */
     private $date;
