@@ -55,7 +55,7 @@ class AnnonceController extends AbstractController
     * @Route("/mesannonces/{id}/edit", name="annonce_edit", methods={"GET","POST"})
     */
     public function edit(Request $request, Annonce $annonce): Response {
-       
+
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
 
