@@ -34,16 +34,23 @@ class AnnonceRepository extends ServiceEntityRepository
         ;
     }
 
-
-    /*
-    public function findOneBySomeField($value): ?Annonce
+    public function findMyAnnouncebyCategory(int $idcategorie): array
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * FROM annonce
+            WHERE categorie_id=:idcategorie
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['idcategorie' => $idcategorie]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAllAssociative();
     }
-    */
+
+
+
 }
+

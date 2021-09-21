@@ -9,7 +9,7 @@
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         {% for cat in categorie.getCategory %}
-          <a class="dropdown-item" href={{ cat.id }}>{{ cat }}</a>
+          <a class="dropdown-item" href="/categorie/{{ cat.id }}">{{ cat }}</a>
         {% endfor %}
       </div>
     </div>
