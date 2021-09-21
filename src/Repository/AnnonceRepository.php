@@ -29,7 +29,6 @@ class AnnonceRepository extends ServiceEntityRepository
             // ->andWhere('a.exampleField = :val')
             // ->setParameter('val', $value)
             ->orderBy('a.id', 'DESC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
