@@ -34,7 +34,7 @@ class HomeController extends AbstractController
         $annonces = $paginator->paginate(
             $donnees = $annonceRepository->findByExampleField(),
             $request->query->getInt('page', 1),
-            10 // nb article par page
+            9 // nb article par page
         );
 
         return $this->render('home/index.html.twig', [
