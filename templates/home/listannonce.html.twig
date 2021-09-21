@@ -19,7 +19,6 @@
   <div class="album py-5 bg-light">
   
     <div class="container ">
-
       <div class="row">
       {% for annonce in annonces %}
       {# {% if annonce.statut == 1 %} #}
@@ -42,6 +41,9 @@
         </div>
         {# {% endif %} #}
         {% endfor %}
+        <div class="navigation d-flex justify-content-center mt-5">
+          {{ knp_pagination_render(annonces, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+        </div>
 
 </main>
 </div>
