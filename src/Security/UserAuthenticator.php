@@ -61,7 +61,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         } 
         
         else {
-            return new RedirectResponse('/home');
+            return new RedirectResponse('/');
         }
 
         
