@@ -28,7 +28,7 @@ class AnnonceRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             // ->andWhere('a.exampleField = :val')
             // ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
+            ->orderBy('a.id', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
