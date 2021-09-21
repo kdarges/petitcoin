@@ -8,9 +8,9 @@
       </a>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        {% for cat in categorie.getCategory %}
+          <a class="dropdown-item" href={{ cat.id }}>{{ cat }}</a>
+        {% endfor %}
       </div>
     </div>
 
@@ -22,7 +22,7 @@
         <li><a href="#" class="nav-link px-2 text-white">About</a></li>       #}
       </ul>
 
-      <div class="col-lg-6 mb-3 mb-lg-0 fw-bold" style="font-size: 24px">LE PETIT COIN</div>
+      <div class="col-lg-6 mb-3 mb-lg-0 fw-bold" style="font-size: 24px">{# <img src="img/logo.png" alt=""> #}LE PETIT COIN</div>
 
       
       <div class="dropdown text-end">
