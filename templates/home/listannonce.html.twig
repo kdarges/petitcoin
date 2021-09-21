@@ -18,20 +18,23 @@
 
   <div class="album py-5 bg-light">
   
-    <div class="container ">
+    <div class="container">
       <div class="row">
       {% for annonce in annonces %}
       {# {% if annonce.statut == 1 %} #}
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
+          <div class="card mb-4 shadow-sm" style="height: 560px">
           <img class="card" src="{{ asset('uploads/images/' ~ annonce.image) | imagine_filter('thumb') }}"/>
             <div class="card-body">
-              <p class="card-text">{{annonce.titre}}</p>
-              <p class="card-text">{{annonce.description}}</p>
+              <p class="card-text fw-bold" style="font-size: 20px">{{ annonce.titre }}</p>
+              {% if annonce.description|length < 99 %}
+                  <p class="card-text" style="height: 72px">{{ annonce.description }}</p>
+              {% else %}
+                  <p class="card-text" style="height: 72px">{{ annonce.description|slice(0, 98) }}...</p>
+              {% endif %}
               <p class="card-text"> <a href="/profil/{{annonce.fk_user.id}}">{{annonce.fk_user}}</a></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  {# <a href="/annonce/{{annonce.id}}"><button>Text</button></a> #}
                   <a class="btn btn-warning" href="/annonce/{{annonce.id}}">Détail</a>
                 </div>
                 <small class="text-muted">{{annonce.prix}}€</small>
@@ -52,4 +55,3 @@
 <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 
 </body>
-
