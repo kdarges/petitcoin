@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/createannonce")
@@ -24,8 +23,7 @@ class CreateannonceController extends AbstractController
     public function index(AnnonceRepository $annonceRepository): Response
     {
         return $this->render('createannonce/index.html.twig', [
-            // 'annonces' => $annonceRepository->findAll(),
-            'annonce' => $annonceRepository->findBy(['statut'=> 1]),
+            'annonces' => $annonceRepository->findAll(),
         ]);
     }
 
@@ -51,8 +49,6 @@ class CreateannonceController extends AbstractController
             $annonce->setFkUser($this->getUser());
             $annonce->setDate(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
-            
-            $annonce->setStatut(0);
 
             $entityManager->persist($annonce);
             $entityManager->flush();

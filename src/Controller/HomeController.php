@@ -4,30 +4,41 @@ namespace App\Controller;
 
 use App\Repository\AnnonceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
-     */
-    public function index(AnnonceRepository $annonceRepository): Response
+    * @Route("/", name="/")
+    */
+    public function home(AnnonceRepository $annonceRepository, Request $request, PaginatorInterface $paginator)
     {
+        $annonces = $paginator->paginate(
+            $donnees = $annonceRepository->findByExampleField(),
+            $request->query->getInt('page', 1),
+            6 // nb article par page
+        );
+
         return $this->render('home/index.html.twig', [
-            // 'annonces' => $annonceRepository->findByExampleField(),
-            'annonce' => $annonceRepository->findBy(['statut' => 1]),
+            'annonces' => $annonces,
         ]);
     }
 
-      /**
-     * @Route("/", name="/")
-     */
-    public function home(AnnonceRepository $annonceRepository): Response
+    /**
+    * @Route("/home", name="home")
+    */
+    public function index(AnnonceRepository $annonceRepository, Request $request, PaginatorInterface $paginator)
     {
+        $annonces = $paginator->paginate(
+            $donnees = $annonceRepository->findByExampleField(),
+            $request->query->getInt('page', 1),
+            6 // nb article par page
+        );
+
         return $this->render('home/index.html.twig', [
-            // 'annonces' => $annonceRepository->findByExampleField(),
-            'annonce' => $annonceRepository->findBy(['statut' => 1]),
+            'annonces' => $annonces,
         ]);
     }
 }

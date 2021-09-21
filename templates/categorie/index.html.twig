@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+
+  {% block body %}
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+ 
+  <div class="album py-5 bg-light">
+  
+    <div class="container ">
+
+      <div class="row">
+     {% for idcategorie in idcategories %}
+      {# {% if annonce.statut == 1 %} #}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+          <img class="card" src="{{ asset('uploads/images/' ~ idcategorie.image) | imagine_filter('thumb') }}"/>
+            <div class="card-body">
+              <p class="card-text">{{idcategorie.titre}}</p>
+              <p class="card-text">{{idcategorie.description}}</p>
+         
+            {% for toto in mesusers.getUser %}
+                {% if idcategorie.fk_user_id == toto.id %}
+              <p class="card-text"> <a href="/profil/{{idcategorie.fk_user_id}}">{{toto.pseudo}}</a></p>
+               {% endif %}
+                 {% endfor %}
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-warning" href="/annonce/{{idcategorie.id}}">Détail</a>
+                </div>
+                <small class="text-muted">{{idcategorie.prix}}€</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {# {% endif %} #}
+        {% endfor %}
+
+
+</main>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+
+</body>
+
+{% endblock %}

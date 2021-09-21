@@ -1,4 +1,4 @@
-<header class="p-3 bg-dark text-white">
+<header class="p-3 bg-dark text-white sticky-top">
   <div class="container">
     <div class="d-flex align-items-center justify-content-center">
 
@@ -9,7 +9,7 @@
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         {% for cat in categorie.getCategory %}
-          <a class="dropdown-item" href={{ cat.id }}>{{ cat }}</a>
+          <a class="dropdown-item" href="/categorie/{{ cat.id }}">{{ cat }}</a>
         {% endfor %}
       </div>
     </div>
@@ -22,7 +22,7 @@
         <li><a href="#" class="nav-link px-2 text-white">About</a></li>       #}
       </ul>
 
-      <div class="col-lg-6 mb-3 mb-lg-0 fw-bold" style="font-size: 24px">{# <img src="img/logo.png" alt=""> #}LE PETIT COIN</div>
+      <div class="col-lg-6 mb-3 mb-lg-0 fw-bold" style="font-size: 24px"><img src="/img/logo.png" style="max-width: 60px"></div>
 
       
       <div class="dropdown text-end">
