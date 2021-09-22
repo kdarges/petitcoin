@@ -1,3 +1,4 @@
+
 <div class="album py-5 bg-light">
 
   <div class="container">
@@ -9,9 +10,10 @@
           <img class="card" src="{{ asset('uploads/images/' ~ annonce.image) | imagine_filter('thumb') }}"/>
           <div class="card-body">
             <p class="card-text fw-bold" style="margin-bottom: 5px; font-size: 21px">{{ annonce.titre }}</p> 
+    
             <div class="card-text d-flex justify-content-between">
-              <span class="text-left fw-bolder" style="font-size:18px">{{ annonce.prix }}€</span>
-              <span class="text-right">#{{ annonce.categorie }}</span>
+              <span class="text-left fw-bolder" style="font-size:15px;">{{ annonce.prix }}€</span>
+              <span style="font-weight: lighter;" class="text-right">#{{ annonce.categorie }}</span>
             </div>
             <hr>
             {% if annonce.description|length < 99 %}
@@ -22,13 +24,13 @@
             <div class="d-grid">
                 <a class="btn btn-warning" href="/annonce/{{annonce.id}}">Détail</a>
             </div>
-            <div class="card-text d-flex justify-content-between mt-1">
+            <div class="card-text d-flex justify-content-between mt-2 mb-4">
               <a class="text-left" href="/profil/{{ annonce.fk_user.id }}">{{ annonce.fk_user }}</a>
              
             </div>
             <div class="card-text d-flex justify-content-between">
-              <span class="text-left text-muted">{{ annonce.date|date("d M Y - H:i") }}</span>
-              <span class="text-right"><i class="fas fa-map-marker-alt"></i> {{ annonce.fkVille }}</span>
+              <span style="font-size: 12px;" class="text-left text-muted">{{ annonce.date|date("d M Y - H:i") }}</span>
+              <span style="font-size: 13px;" class="text-right"><i class="fas fa-map-marker-alt"></i> {{ annonce.fkVille }}</span>
             </div>
 
           </div>
