@@ -1,44 +1,27 @@
 {% extends 'base.html.twig' %}
 
-
-  {% block body %}
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
- 
+{% block body %}
   <div class="album py-5 bg-light">
   
-    <div class="container ">
-
+    <div class="container">
       <div class="row">
-     {% for idcategorie in idcategories %}
+       {% for idcategorie in idcategories %}
       {# {% if annonce.statut == 1 %} #}
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
+          <div class="card mb-4 shadow-sm" style="height: 560px">
           <img class="card" src="{{ asset('uploads/images/' ~ idcategorie.image) | imagine_filter('thumb') }}"/>
             <div class="card-body">
-              <p class="card-text">{{idcategorie.titre}}</p>
-              <p class="card-text">{{idcategorie.description}}</p>
-         
-            {% for toto in mesusers.getUser %}
-                {% if idcategorie.fk_user_id == toto.id %}
-              <p class="card-text"> <a href="/profil/{{idcategorie.fk_user_id}}">{{toto.pseudo}}</a></p>
-               {% endif %}
+              <p class="card-text fw-bold" style="font-size: 20px">{{ idcategorie.titre }}</p>
+              {% if idcategorie.description|length < 99 %}
+                  <p class="card-text" style="height: 72px">{{ idcategorie.description }}</p>
+              {% else %}
+                  <p class="card-text" style="height: 72px">{{ idcategorie.description|slice(0, 98) }}...</p>
+              {% endif %}
+              {% for user in mesusers.getUser %}
+               {% if idcategorie.fk_user_id == user.id %}
+              <p class="card-text"> <a href="/profil/{{idcategorie.fk_user_id}}">{{user.pseudo}}</a></p>
+                  {% endif %}
                  {% endfor %}
-              
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a class="btn btn-warning" href="/annonce/{{idcategorie.id}}">Détail</a>
@@ -49,9 +32,12 @@
           </div>
         </div>
         {# {% endif %} #}
-        {% endfor %}
-
-
+           {% endfor %}
+        <div class="navigation d-flex justify-content-center mt-5">
+    
+          {{ knp_pagination_render(idcategories, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+        </div>
+ 
 </main>
 </div>
 
