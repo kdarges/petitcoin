@@ -34,7 +34,7 @@ class AnnonceType extends AbstractType
                 ]
             ])
             // ->add('fk_user')
-            ->add('fk_ville')
+            ->add('fk_ville', null, array('label' => 'Ville'))
             ->add('categorie')
         ;
     }
