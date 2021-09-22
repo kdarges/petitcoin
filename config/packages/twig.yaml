@@ -4,6 +4,7 @@ twig:
     globals:
         categorie: '@App\Service\Category'
         mesusers: '@App\Service\Users'
+        mesannonces: '@App\Service\Annonces'
 
 when@test:
     twig:
