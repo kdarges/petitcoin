@@ -18,7 +18,23 @@ class HomeController extends AbstractController
         $annonces = $paginator->paginate(
             $donnees = $annonceRepository->findByExampleField(),
             $request->query->getInt('page', 1),
-            9 // nb article par page
+            6 // nb article par page
+        );
+
+        return $this->render('home/index.html.twig', [
+            'annonces' => $annonces,
+        ]);
+    }
+
+    /**
+    * @Route("/home", name="home")
+    */
+    public function index(AnnonceRepository $annonceRepository, Request $request, PaginatorInterface $paginator)
+    {
+        $annonces = $paginator->paginate(
+            $donnees = $annonceRepository->findByExampleField(),
+            $request->query->getInt('page', 1),
+            6 // nb article par page
         );
 
         return $this->render('home/index.html.twig', [
