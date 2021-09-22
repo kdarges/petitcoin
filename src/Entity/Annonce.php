@@ -31,7 +31,7 @@ class Annonce
 
     /**
      * 
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 

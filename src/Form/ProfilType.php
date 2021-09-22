@@ -17,13 +17,14 @@ class ProfilType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo')
+            ->add('pseudo', null, array('label' => false))
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'label' => 'Mot de passe',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
+                'label' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -36,7 +37,7 @@ class ProfilType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('avatar')
+            ->add('avatar', null, array('label' => false))
             ->add('coordonnees', CoordonneesType::class)
         ;
     }

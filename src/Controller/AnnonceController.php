@@ -20,6 +20,10 @@ class AnnonceController extends AbstractController
         $product = $this->getDoctrine()
         ->getRepository(Annonce::class)
         ->find($id);
+
+        $products = $this->getDoctrine()
+        ->getRepository(Annonce::class)
+        ->findAll($id);
         
         if (!$product) {
             throw $this->createNotFoundException(
@@ -31,7 +35,7 @@ class AnnonceController extends AbstractController
         
         // or render a template
         // in the template, print things with {{ product.name }}
-        return $this->render('annonce/index.html.twig', ['product' => $product]);
+        return $this->render('annonce/index.html.twig', ['product' => $product, 'products' => $products]);
     }
     
     /**
