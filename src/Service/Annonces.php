@@ -18,8 +18,8 @@ class Annonces extends ServiceEntityRepository
         return $this->createQueryBuilder('c')
             // ->andWhere('a.exampleField = :val')
             // ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            // ->setMaxResults()
+            ->orderBy('c.categorie', 'ASC')
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult()
         ;
