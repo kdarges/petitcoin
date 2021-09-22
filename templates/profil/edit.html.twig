@@ -11,8 +11,18 @@
 <div class="example-wrapper">
     <h1>Profil</h1>
         {{ form_start(profil) }}
-        {{ form_row(profil) }}
-        <button type="submit" class="btn">Modifier</button>
+         <div class="mb-4">{{ form_row(profil.pseudo) }}</div>
+         <div class="mb-4">{{ form_row(profil.plainPassword) }}</div>
+         <div class="mb-4">{{ form_row(profil.avatar) }}</div>
+         <div class="mb-4">{{ form_row(profil.coordonnees.nom) }}</div>
+         <div class="mb-4">{{ form_row(profil.coordonnees.prenom) }}</div>
+         <div class="mb-4">{{ form_row(profil.coordonnees.tel) }}</div>
+         <div class="mb-4">{{ form_row(profil.coordonnees.mail) }}</div>
+         <div class="mb-4">{{ form_row(profil.coordonnees.address.no) }}</div>
+         <div class="mb-4">{{ form_row(profil.coordonnees.address.rue) }}</div>
+         <div class="mb-4">{{ form_row(profil.coordonnees.address.villes) }}</div>
+
+        <button type="submit" class="btn btn-warning">Modifier</button>
         {{ form_end(profil) }}
 </div>
 {% endblock %}

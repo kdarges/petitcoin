@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Annonce;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
@@ -21,7 +22,7 @@ class AnnonceType extends AbstractType
             ->add('image', FileType::class, [
                 'label' => 'Image (png, jpg)',
                 'mapped' => false, // n'est pas associé au get/set
-                'required' => true, // required
+                'required' => false, // required
 
                 'constraints' => [
                     new Image([
@@ -34,7 +35,9 @@ class AnnonceType extends AbstractType
                 ]
             ])
             // ->add('fk_user')
-            ->add('fk_ville')
+            ->add('fk_ville', TextType::class, [
+                'label' => 'Ville',
+            ])
             ->add('categorie')
         ;
     }

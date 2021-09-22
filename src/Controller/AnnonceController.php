@@ -68,7 +68,8 @@ class AnnonceController extends AbstractController
             
         }
         return $this->render('annonce/editannonce.html.twig', [
-            'annonce' => $form->createView(),
+            'form' => $form->createView(),
+            'annonce' => $annonce,
             
         ]);
         

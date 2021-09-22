@@ -8,13 +8,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Ville;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AddressType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('no')
+            ->add('no', TextType::class, [
+                'label' => 'N°', 
+            ])
             ->add('rue')
             ->add('villes', EntityType::class, [
                 'class' => Ville::class,

@@ -8,13 +8,20 @@
     <h1>Créez votre compte</h1>
 
     {{ form_start(registrationForm) }}
+        <div class="mb-4">{{ form_row(registrationForm.pseudo) }}</div>
+        <div class="mb-4">{{ form_row(registrationForm.plainPassword) }}</div>
+        <div class="mb-4">{{ form_row(registrationForm.coordonnees.nom) }}</div>
+        <div class="mb-4">{{ form_row(registrationForm.coordonnees.prenom) }}</div>
+        <div class="mb-4">{{ form_row(registrationForm.coordonnees.tel) }}</div>
+        <div class="mb-4">{{ form_row(registrationForm.coordonnees.mail) }}</div>
+        <div class="mb-4">{{ form_row(registrationForm.coordonnees.address.no) }}</div>
+        <div class="mb-4">{{ form_row(registrationForm.coordonnees.address.rue) }}</div>
+        <div class="mb-4">{{ form_row(registrationForm.coordonnees.address.villes) }}</div>
 
         {# {{ form_row(registrationForm.pseudo) }} #}
         {# {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }} #}
-
-        {{ form_row(registrationForm) }}
 
         <button type="submit" class="btn btn-dark" style="margin-top:30px">Créer mon compte</button>
      {{ form_end(registrationForm) }}
