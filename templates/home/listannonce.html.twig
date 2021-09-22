@@ -5,13 +5,13 @@
     {% for annonce in annonces %}
     {# {% if annonce.statut == 1 %} #}
       <div class="col-md-4">
-        <div class="card mb-4 shadow-sm" style="height: 595px">
+        <div class="card mb-4 shadow-sm" style="max-height: 800px">
           <img class="card" src="{{ asset('uploads/images/' ~ annonce.image) | imagine_filter('thumb') }}"/>
           <div class="card-body">
-            <p class="card-text fw-bold" style="margin-bottom: 0; font-size: 21px">{{ annonce.titre }}</p> 
+            <p class="card-text fw-bold" style="margin-bottom: 5px; font-size: 21px">{{ annonce.titre }}</p> 
             <div class="card-text d-flex justify-content-between">
               <span class="text-left fw-bolder" style="font-size:18px">{{ annonce.prix }}€</span>
-              <span class="text-right">{{ annonce.categorie }}</span>
+              <span class="text-right">#{{ annonce.categorie }}</span>
             </div>
             <hr>
             {% if annonce.description|length < 99 %}
@@ -22,12 +22,13 @@
             <div class="d-grid">
                 <a class="btn btn-warning" href="/annonce/{{annonce.id}}">Détail</a>
             </div>
-            <div class="card-text d-flex justify-content-between">
+            <div class="card-text d-flex justify-content-between mt-1">
               <a class="text-left" href="/profil/{{ annonce.fk_user.id }}">{{ annonce.fk_user }}</a>
-              <span class="text-right">{{ annonce.fkVille }} {{ annonce.fkVille.cp }}</span>
+             
             </div>
             <div class="card-text d-flex justify-content-between">
               <span class="text-left text-muted">{{ annonce.date|date("d M Y - H:i") }}</span>
+              <span class="text-right"><i class="fas fa-map-marker-alt"></i> {{ annonce.fkVille }}</span>
             </div>
 
           </div>
