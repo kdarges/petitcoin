@@ -5,6 +5,7 @@ twig:
         categorie: '@App\Service\Category'
         mesusers: '@App\Service\Users'
         mesannonces: '@App\Service\Annonces'
+        mesvilles: '@App\Service\Villes'
 
 when@test:
     twig:
