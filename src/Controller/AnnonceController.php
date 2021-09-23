@@ -57,7 +57,7 @@ class AnnonceController extends AbstractController
     * @Route("/mesannonces/{id}/edit", name="annonce_edit", methods={"GET","POST"})
     */
     public function edit(Request $request, Annonce $annonce): Response {
-       
+
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
 
@@ -72,7 +72,8 @@ class AnnonceController extends AbstractController
             
         }
         return $this->render('annonce/editannonce.html.twig', [
-            'annonce' => $form->createView(),
+            'form' => $form->createView(),
+            'annonce' => $annonce,
             
         ]);
         

@@ -49,6 +49,7 @@ class CreateannonceController extends AbstractController
             $annonce->setFkUser($this->getUser());
             $annonce->setDate(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($annonce);
             $entityManager->flush();
 
