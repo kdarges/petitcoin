@@ -19,10 +19,10 @@ class AnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, Annonce::class);
     }
 
-     /**
-      * @return Annonce[] Returns an array of Annonce objects
-      */
-    
+    /**
+     * @return Annonce[] Returns an array of Annonce objects
+     */
+
     public function findByExampleField()
     {
         return $this->createQueryBuilder('a')
@@ -30,8 +30,7 @@ class AnnonceRepository extends ServiceEntityRepository
             // ->setParameter('val', $value)
             ->orderBy('a.id', 'DESC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
     public function findMyAnnouncebyCategory(int $idcategorie): array
@@ -50,7 +49,12 @@ class AnnonceRepository extends ServiceEntityRepository
         return $stmt->fetchAllAssociative();
     }
 
-
-
+    public function sortAnnounceBy($query)
+    {
+        return $this->createQueryBuilder('req')
+            ->orderBy('req.id', 'DESC')
+            ->where($query)
+            ->getQuery()
+            ->getResult();
+    }
 }
-

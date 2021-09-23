@@ -1,7 +1,18 @@
 
 <div class="album py-5 bg-light">
-
   <div class="container">
+
+    <div class="dropdown show">
+      <a class="btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Département
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        {% for t in villes %}
+          <a class="dropdown-item" href="/?ville={{ t.id }}">{{ t.departement }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    
     <div class="row">
     {% for annonce in annonces %}
     {# {% if annonce.statut == 1 %} #}
