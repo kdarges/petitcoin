@@ -8,26 +8,46 @@
        {% for idcategorie in idcategories %}
       {# {% if annonce.statut == 1 %} #}
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" style="height: 560px">
+        <div class="card mb-4 shadow-sm" style="max-height: 800px">
           <img class="card" src="{{ asset('uploads/images/' ~ idcategorie.image) | imagine_filter('thumb') }}"/>
             <div class="card-body">
-              <p class="card-text fw-bold" style="font-size: 20px">{{ idcategorie.titre }}</p>
+              <p class="card-text fw-bold" style="margin-bottom: 5px; font-size: 21px">{{ idcategorie.titre }}</p>
+
+                <div class="card-text d-flex justify-content-between">
+              <span class="text-left fw-bolder" style="font-size:15px;">{{ idcategorie.prix }}€</span>
+               {% for c in categorie.getCategory %}
+               {% if idcategorie.categorie_id == c.id %}
+              <span style="font-weight: lighter;" class="text-right">#{{ c.titre }}</span>
+             {% endif %}
+                 {% endfor %}
+            </div>
+            <hr>
               {% if idcategorie.description|length < 99 %}
                   <p class="card-text" style="height: 72px">{{ idcategorie.description }}</p>
               {% else %}
                   <p class="card-text" style="height: 72px">{{ idcategorie.description|slice(0, 98) }}...</p>
               {% endif %}
+
+            <div class="d-grid">
+                <a class="btn btn-warning" href="/annonce/{{idcategorie.id}}">Détail</a>
+            </div>
+
               {% for user in mesusers.getUser %}
                {% if idcategorie.fk_user_id == user.id %}
-              <p class="card-text"> <a href="/profil/{{idcategorie.fk_user_id}}">{{user.pseudo}}</a></p>
+          <div class="card-text d-flex justify-content-between mt-2 mb-4">
+              <a class="text-left" href="/profil/{{ idcategorie.fk_user_id }}">{{ user.pseudo }}</a>
+             
+            </div>                  
                   {% endif %}
                  {% endfor %}
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a class="btn btn-warning" href="/annonce/{{idcategorie.id}}">Détail</a>
-                </div>
-                <small class="text-muted">{{idcategorie.prix}}€</small>
-              </div>
+              <div class="card-text d-flex justify-content-between">
+              <span style="font-size: 12px;" class="text-left text-muted">{{ idcategorie.date|date("d M Y - H:i") }}</span>
+               {% for v in mesvilles.getVilles %}
+               {% if idcategorie.fk_ville_id == v.id %}
+              <span style="font-size: 13px;" class="text-right"><i class="fas fa-map-marker-alt"></i> {{ v.nom }}</span>
+             {% endif %}
+                 {% endfor %}
+            </div>
             </div>
           </div>
         </div>
@@ -45,5 +65,4 @@
 <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 
 </body>
-
 {% endblock %}
