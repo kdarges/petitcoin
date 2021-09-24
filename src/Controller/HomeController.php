@@ -35,7 +35,7 @@ class HomeController extends AbstractController
     /**
     * @Route("/home", name="home")
     */
-    public function index(AnnonceRepository $annonceRepository, Request $request, PaginatorInterface $paginator)
+    public function index(VilleRepository $villeRepository, AnnonceRepository $annonceRepository, Request $request, PaginatorInterface $paginator)
     {
         $query = $_GET ? "req.fk_ville = " . $_GET['dpt'] : '1=1';
         $annonces = $paginator->paginate(
@@ -46,6 +46,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'annonces' => $annonces,
+            'villes' => $villeRepository->getDpt(),
         ]);
     }
 }
