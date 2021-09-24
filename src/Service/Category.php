@@ -16,8 +16,6 @@ class Category extends ServiceEntityRepository
     public function getCategory()
     {
         return $this->createQueryBuilder('c')
-            // ->andWhere('a.exampleField = :val')
-            // ->setParameter('val', $value)
             ->orderBy('c.id', 'ASC')
             ->getQuery()
             ->getResult()

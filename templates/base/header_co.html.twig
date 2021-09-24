@@ -8,9 +8,15 @@
       </a>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        {% for cat in categorie.getCategory %}
-          <a class="dropdown-item" href="/categorie/{{ cat.id }}">{{ cat }}</a>
-        {% endfor %}
+        {% if app.request.query.get("ville") %}
+          {% for cat in categorie.getCategory %}
+            <a class="dropdown-item" href="/?categorie={{ cat.id }}&amp;ville={{ app.request.query.get("ville") }}">{{ cat }}</a>
+          {% endfor %}
+        {% else %}
+          {% for cat in categorie.getCategory %}
+            <a class="dropdown-item" href="/?categorie={{ cat.id }}">{{ cat }}</a>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
 

@@ -17,14 +17,13 @@ class HomeController extends AbstractController
     */
     public function home(VilleRepository $villeRepository, AnnonceRepository $annonceRepository, Request $request, PaginatorInterface $paginator)
     {
-        $query = $_GET ? "req.fk_ville = " . $_GET['ville'] : '1=1';
+        $category = isset($_GET['categorie']) ? "req.categorie = " . $_GET['categorie'] : '1=1';
+        $query = isset($_GET['ville']) ? "req.fk_ville = " . $_GET['ville'] : '1=1';
         $annonces = $paginator->paginate(
-            $donnees = $annonceRepository->sortAnnounceBy($query),
+            $donnees = $annonceRepository->sortAnnounceBy($query, $category),
             $request->query->getInt('page', 1),
             6 // nb article par page
         );
-
-        $test = $villeRepository->getDpt();
 
         return $this->render('home/index.html.twig', [
             'annonces' => $annonces,
@@ -37,9 +36,10 @@ class HomeController extends AbstractController
     */
     public function index(VilleRepository $villeRepository, AnnonceRepository $annonceRepository, Request $request, PaginatorInterface $paginator)
     {
-        $query = $_GET ? "req.fk_ville = " . $_GET['dpt'] : '1=1';
+        $category = isset($_GET['categorie']) ? "req.categorie = " . $_GET['categorie'] : '1=1';
+        $query = isset($_GET['ville']) ? "req.fk_ville = " . $_GET['ville'] : '1=1';
         $annonces = $paginator->paginate(
-            $donnees = $annonceRepository->sortAnnounceBy($query),
+            $donnees = $annonceRepository->sortAnnounceBy($query, $category),
             $request->query->getInt('page', 1),
             6 // nb article par page
         );
