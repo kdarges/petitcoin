@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,33 +8,14 @@ use App\Entity\Annonce;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\AnnonceType;
 
-
 class AnnonceController extends AbstractController
 {
     /**
     * @Route("/annonce/{id}", name="annonce")
     */
-    public function show(int $id): Response
+    public function show(Annonce $annonces): Response
     {
-        $product = $this->getDoctrine()
-        ->getRepository(Annonce::class)
-        ->find($id);
-
-        $products = $this->getDoctrine()
-        ->getRepository(Annonce::class)
-        ->findAll($id);
-        
-        if (!$product) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$id
-            );
-        }
-        
-        // return new Response('Check out this great product: '.$product->getName());
-        
-        // or render a template
-        // in the template, print things with {{ product.name }}
-        return $this->render('annonce/index.html.twig', ['product' => $product, 'products' => $products]);
+        return $this->render('annonce/index.html.twig', ['annonces' => $annonces]);
     }
     
     /**
@@ -49,8 +29,6 @@ class AnnonceController extends AbstractController
         return $this->render('annonce/mesannonces.html.twig', [
             'annonces' => $annonces,
         ]);
-        
-        
     }
     
     /**
@@ -78,9 +56,7 @@ class AnnonceController extends AbstractController
         ]);
         
     }
-    
-    
-    
+
     /**
     * @Route("/mesannonces/{id}/delete", name="annonce_delete", methods={"GET","POST"})
     */
