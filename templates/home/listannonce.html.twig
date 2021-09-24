@@ -7,9 +7,15 @@
         Ville
       </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        {% for t in villes %}
-          <a class="dropdown-item" href="/?ville={{ t.id }}">{{ t.nom }}</a>
-        {% endfor %}
+        {% if app.request.query.get("categorie") %}
+          {% for t in villes %}
+            <a class="dropdown-item" href="/?categorie={{ app.request.query.get("categorie") }}&amp;ville={{ t.id }}">{{ t.nom }}</a>
+          {% endfor %}
+        {% else %}
+          {% for t in villes %}
+            <a class="dropdown-item" href="/?ville={{ t.id }}">{{ t.nom }}</a>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
     

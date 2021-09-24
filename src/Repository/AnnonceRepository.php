@@ -33,27 +33,27 @@ class AnnonceRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findMyAnnouncebyCategory(int $idcategorie): array
-    {
-        $conn = $this->getEntityManager()->getConnection();
+    // public function findMyAnnouncebyCategory(int $idcategorie): array
+    // {
+    //     $conn = $this->getEntityManager()->getConnection();
 
-        $sql = '
-            SELECT * FROM annonce
-            WHERE categorie_id=:idcategorie
-            ';
+    //     $sql = '
+    //         SELECT * FROM annonce
+    //         WHERE categorie_id=:idcategorie
+    //         ';
 
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['idcategorie' => $idcategorie]);
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->execute(['idcategorie' => $idcategorie]);
 
-        // returns an array of arrays (i.e. a raw data set)
-        return $stmt->fetchAllAssociative();
-    }
+    //     // returns an array of arrays (i.e. a raw data set)
+    //     return $stmt->fetchAllAssociative();
+    // }
 
-    public function sortAnnounceBy($query)
+    public function sortAnnounceBy($query, $category)
     {
         return $this->createQueryBuilder('req')
             ->orderBy('req.id', 'DESC')
-            ->where($query)
+            ->where($query, $category)
             ->getQuery()
             ->getResult();
     }
