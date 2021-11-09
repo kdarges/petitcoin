@@ -22,8 +22,12 @@ class CreateannonceController extends AbstractController
      */
     public function index(AnnonceRepository $annonceRepository): Response
     {
-        return $this->render('createannonce/index.html.twig', [
-            'annonces' => $annonceRepository->findAll(),
+        
+
+                return $this->render('createannonce/index.html.twig', [
+                    'annonces' => $annonceRepository->findAll(),
+            
+    
         ]);
     }
 
@@ -49,7 +53,6 @@ class CreateannonceController extends AbstractController
             $annonce->setFkUser($this->getUser());
             $annonce->setDate(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
-
             $entityManager->persist($annonce);
             $entityManager->flush();
 
