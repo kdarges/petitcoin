@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -28,7 +30,8 @@ class Annonce
     private $description;
 
     /**
-     * @ORM\Column(type="date")
+     * 
+     * @ORM\Column(type="datetime")
      */
     private $date;
 

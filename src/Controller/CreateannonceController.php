@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
+use App\Service\FileUploader;
 use App\Form\AnnonceType;
 use App\Repository\AnnonceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @Route("/createannonce")
@@ -28,7 +30,7 @@ class CreateannonceController extends AbstractController
     /**
      * @Route("/new", name="createannonce_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader)
     {
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
@@ -36,8 +38,18 @@ class CreateannonceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                $imageFileName = $fileUploader->upload($imageFile);
+                $annonce->setImage($imageFileName);
+            }
+
             $annonce->setFkUser($this->getUser());
+            $annonce->setDate(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($annonce);
             $entityManager->flush();
 

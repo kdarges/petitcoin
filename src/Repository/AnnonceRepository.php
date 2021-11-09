@@ -19,32 +19,42 @@ class AnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, Annonce::class);
     }
 
-     /**
-      * @return Annonce[] Returns an array of Annonce objects
-      */
-    
+    /**
+     * @return Annonce[] Returns an array of Annonce objects
+     */
+
     public function findByExampleField()
     {
         return $this->createQueryBuilder('a')
             // ->andWhere('a.exampleField = :val')
             // ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('a.id', 'DESC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
+    // public function findMyAnnouncebyCategory(int $idcategorie): array
+    // {
+    //     $conn = $this->getEntityManager()->getConnection();
 
-    /*
-    public function findOneBySomeField($value): ?Annonce
+    //     $sql = '
+    //         SELECT * FROM annonce
+    //         WHERE categorie_id=:idcategorie
+    //         ';
+
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->execute(['idcategorie' => $idcategorie]);
+
+    //     // returns an array of arrays (i.e. a raw data set)
+    //     return $stmt->fetchAllAssociative();
+    // }
+
+    public function sortAnnounceBy($query, $category)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+        return $this->createQueryBuilder('req')
+            ->orderBy('req.id', 'DESC')
+            ->where($query, $category)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
 }

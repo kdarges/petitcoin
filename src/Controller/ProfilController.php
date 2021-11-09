@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use App\Entity\Coordonnees;
 use App\Form\ProfilType;
 use App\Entity\User;
 
@@ -56,5 +55,18 @@ class ProfilController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/profil/{id}", name="profil_autre")
+     */
+    public function profil_autre(User $user) : Response {
+       
+
+        return $this->render('profil/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
     
+
+
+
 }
