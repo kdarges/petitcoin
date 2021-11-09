@@ -18,6 +18,7 @@ class AddressType extends AbstractType
             ->add('no', NumberType::class, array('label' => false, 'input' => 'number', ))
             ->add('rue', null, array('label' => false))
             ->add('villes', EntityType::class, [
+                'label' => 'Ville',
                 'class' => Ville::class,
     //  nom de la ville property as the visible option string // mettre villes en tableau
                 'choice_label' => 'nom',
