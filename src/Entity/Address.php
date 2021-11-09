@@ -30,7 +30,7 @@ class Address
     private $rue;
 
     /**
-     * @ORM\OneToMany(targetEntity=coordonnees::class, mappedBy="address")
+     * @ORM\OneToMany(targetEntity=Coordonnees::class, mappedBy="address")
      */
     private $fk_coord;
 

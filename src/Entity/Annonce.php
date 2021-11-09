@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -28,7 +30,8 @@ class Annonce
     private $description;
 
     /**
-     * @ORM\Column(type="date")
+     * 
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
@@ -43,7 +46,7 @@ class Annonce
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $fk_user;
@@ -59,6 +62,11 @@ class Annonce
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $statut;
 
     public function getId(): ?int
     {
@@ -125,7 +133,7 @@ class Annonce
         return $this;
     }
 
-    public function getFkUser(): ?user
+    public function getfk_user(): ?user
     {
         return $this->fk_user;
     }
@@ -157,6 +165,23 @@ class Annonce
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->titre;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

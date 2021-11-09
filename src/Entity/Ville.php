@@ -35,7 +35,7 @@ class Ville
     private $departement;
 
     /**
-     * @ORM\ManyToMany(targetEntity=address::class, inversedBy="villes")
+     * @ORM\ManyToMany(targetEntity=Address::class, inversedBy="villes")
      */
     private $fk_address;
 
@@ -143,5 +143,9 @@ class Ville
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->nom;
     }
 }
