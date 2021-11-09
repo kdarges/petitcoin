@@ -43,13 +43,13 @@ class Annonce
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $fk_user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ville::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $fk_ville;
@@ -59,6 +59,11 @@ class Annonce
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $statut;
 
     public function getId(): ?int
     {
@@ -125,7 +130,7 @@ class Annonce
         return $this;
     }
 
-    public function getFkUser(): ?user
+    public function getfk_user(): ?user
     {
         return $this->fk_user;
     }
@@ -157,6 +162,23 @@ class Annonce
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->titre;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

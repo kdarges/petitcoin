@@ -28,7 +28,7 @@ class Messages
     private $contenu;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      */
     private $fk_user;
