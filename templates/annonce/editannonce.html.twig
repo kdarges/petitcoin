@@ -10,9 +10,16 @@
 
 <div class="example-wrapper">
     <h1>Annonce</h1>
-        {{ form_start(annonce) }}
-        {{ form_row(annonce) }}
-        <button type="submit" class="btn">Modifier</button>
-        {{ form_end(annonce) }}
+        {{ form_start(form) }}
+        <img class="card" src="{{ asset('uploads/images/' ~ annonce.image) | imagine_filter('thumb') }}"/>
+        {# affiche le champ image et ensuite les autres inputs #}
+        <div class="mb-4">{{ form_row(form.image) }} </div>
+        <div class="mb-4">{{ form_row(form.titre) }}</div>
+        <div class="mb-4"> {{ form_row(form.description) }}</div>
+        <div class="mb-4">{{ form_row(form.prix) }}</div>
+        <div class="mb-4">{{ form_row(form.fk_ville) }}</div>
+        <div class="mb-4">{{ form_row(form.categorie) }}</div>
+        <button type="submit" class="btn btn-warning">Modifier</button>
+        {{ form_end(form) }}
 </div>
 {% endblock %}

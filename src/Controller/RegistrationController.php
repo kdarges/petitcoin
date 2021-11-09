@@ -21,7 +21,7 @@ class RegistrationController extends AbstractController
         $user = new User();
         $coordonnees = new Coordonnees();
         $user->setCoordonnees($coordonnees);
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationFormType::class, $user, ['label' => ' ']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
